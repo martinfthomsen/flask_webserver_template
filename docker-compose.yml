@@ -1,0 +1,17 @@
+version: '2'
+services:
+  anaconda:
+    build: .
+    command: echo 'Success!'
+    volumes:
+      - .:/code
+    depends_on:
+      - db
+  flask:
+    image: p0bailey/docker-flask
+    depends_on:
+      - db
+    ports:
+      - "8000:80"
+  db:
+    image: postgres
